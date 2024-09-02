@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour {
     void Start() {
         camTransform = transform;
         cam = Camera.main;
-        playerPos = FindObjectOfType<PlayerMovement>().transform;
+        playerPos = FindFirstObjectByType<PlayerMovement>().transform;
     }
 
     void Update() {

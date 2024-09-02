@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start() {
         controller = GetComponent<CharacterController>();
-        thirdPersonCamera = FindObjectOfType<Camera>().transform;
+        thirdPersonCamera = FindFirstObjectByType<Camera>().transform;
     }
     void Update() {
 

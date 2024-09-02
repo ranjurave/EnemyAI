@@ -18,10 +18,10 @@ public class SolderAnimation : MonoBehaviour
     void Update() {
         bool isRunning = animator.GetBool(isRunningHash);
 
-        if (player.direction.magnitude > 0.1f) {
+        if (player.direction.magnitude > 0.01f) {
             animator.SetBool("IsRunning", true);
         }
-        if (player.direction.magnitude < 0.1f) {
+        if (player.direction.magnitude <= 0.01f) {
             animator.SetBool("IsRunning", false);
         }
         if (player.fire) {
