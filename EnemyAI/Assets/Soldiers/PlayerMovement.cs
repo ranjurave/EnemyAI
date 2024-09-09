@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     private float speed = 6f;
     private float turnSmoothVelocity;
     Transform thirdPersonCamera;
+    Camera playerCamera;
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public bool fire;
     //Jump variable
@@ -16,15 +17,31 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] LayerMask groundMask;
     [SerializeField] float gravity = 9.8f;
     [SerializeField] float jumpHeight = 2;
+    [SerializeField] Transform gunPoint;
     Vector3 velocity;
 
     void Start() {
         controller = GetComponent<CharacterController>();
         thirdPersonCamera = FindFirstObjectByType<Camera>().transform;
+        playerCamera = FindFirstObjectByType<Camera>();
     }
     void Update() {
 
         fire = Input.GetMouseButton(0);
+
+        if(fire) {
+            RaycastHit hit;
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit)) {
+                Transform objectHit = hit.transform;
+                Debug.Log(hit.transform.name);
+            }
+            //Ray ray = new Ray(gunPoint.position, transform.forward);
+            //if (Physics.Raycast(ray, out hit)) {
+            //    Debug.Log(hit.transform.name);
+            //}
+            //Debug.DrawRay(gunPoint.position, Vector3.forward, Color.red );  
+        }
 
         //Movement Code
         float horizontal = Input.GetAxis("Horizontal");
